@@ -1,0 +1,34 @@
+\begin{tikzpicture}
+\begin{groupplot}[
+   group style={
+       group size=1 by 3,
+       x descriptions at=edge bottom,
+       y descriptions at=edge left,
+       vertical sep=0pt,
+       horizontal sep=0pt},
+      height=8cm,
+      width = 12cm,
+      clip  = true,
+      scaled y ticks=false,
+      scaled x ticks=false,
+	enlarge y limits = false,
+	enlarge x limits = false,
+      xtick = {4, 40, 77, 113, 150, 186, 223},
+      xticklabels = {1988, 1991, 1994, 1997, 2000, 2003, 2006},
+      xticklabel style = {rotate = 70, font = \large},
+      yticklabel style = {font = \large},
+      ylabel style={align=center, font = \large},
+      ylabel = ,
+      xlabel=, % \large Time,
+      legend cell align={left},
+      legend style={at={(axis cs:70,0.61)},anchor=south west}, 
+]
+\nextgroupplot[ylabel = Volume contraction rate (Tr$J$)]
+\errorband{./time_series_of_divergence.txt}{0}{1}{2}{blue}{0.4}	
+\nextgroupplot[ylabel = Sea temperature ($^{\circ}$C), xtick style={draw=none}]
+\errorband{./Temperature_mm.txt}{0}{1}{2}{cyan}{0.4}	
+\nextgroupplot[ylabel = Wave height (m)] 
+     xticklabel style = {rotate = 70}, clip = true] 
+\errorband{./Waves_mm.txt}{0}{1}{2}{green!60!blue!90}{0.4}	
+\end{groupplot}
+\end{tikzpicture}

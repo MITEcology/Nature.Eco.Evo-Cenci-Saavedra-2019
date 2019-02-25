@@ -1,0 +1,40 @@
+\begin{tikzpicture}
+\begin{groupplot}[
+   group style={
+       group size=1 by 3,
+       x descriptions at=edge bottom,
+       y descriptions at=edge left,
+       vertical sep=0pt,
+       horizontal sep=0pt},
+      height=8cm,
+      width = 12cm,
+      clip  = true,
+      scaled y ticks=false,
+      scaled x ticks=false,
+	enlarge y limits = false,
+	enlarge x limits = false,
+      xtick = {1, ..., 12},
+      xticklabels = {Jan, Feb, Mar, Apr, May, Jun, Jul, Aug,Sept,Oct,Nov,Dec},
+      xticklabel style = {rotate = 70, font = \large},
+      yticklabel style = {font = \large},
+      ylabel style={align=center},
+      ylabel = ,
+      xlabel=, % \large Time,
+      legend cell align={left},
+      legend style={at={(axis cs:70,0.61)},anchor=south west}, 
+]
+\nextgroupplot
+\fill[blue!40, opacity = 0.2] (1,2.5) rectangle (3,2.8);
+\fill[blue!40, opacity = 0.2] (6,2.5) rectangle (9,2.8);
+\errorband{./Monthly_average_divergence.txt}{0}{1}{2}{blue}{0.4}	
+\nextgroupplot
+\fill[blue!40, opacity = 0.2] (1,10) rectangle (3,25);
+\fill[blue!40, opacity = 0.2] (6,10) rectangle (9,25);
+\errorband{./temperature.txt}{0}{1}{2}{cyan}{0.4}
+\nextgroupplot[ytick = {1.05, 1.15, 1.25,1.35}]
+\fill[blue!40, opacity = 0.2] (1,0) rectangle (3,1.5);
+\fill[blue!40, opacity = 0.2] (6,0) rectangle (9,1.5);
+\errorband{./Waves.txt}{0}{1}{2}{green!60!blue!90}{0.4}	
+
+\end{groupplot}
+\end{tikzpicture}

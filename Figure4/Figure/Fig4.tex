@@ -1,0 +1,59 @@
+\documentclass{standalone}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
+\usepackage{tikz, tikz-3dplot}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes}
+\usetikzlibrary{arrows,positioning}
+\usetikzlibrary{calc}
+\usepackage{graphicx}
+\usepgfplotslibrary{statistics}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepgfplotslibrary{fillbetween}
+\usepackage{pgfplotstable}
+\usepgfplotslibrary{groupplots}
+
+\pgfplotsset{select coords between index/.style 2 args={
+    x filter/.code={
+        \ifnum\coordindex<#1\def\pgfmathresult{}\fi
+        \ifnum\coordindex>#2\def\pgfmathresult{}\fi
+    }
+}}
+\pgfplotsset{every xtick label/.append style={font=\tiny}}
+\newcommand{\errorband}[6]{
+\pgfplotstableread{#1}\datatable
+  \addplot [name path=pluserror,draw=none,no markers,forget plot]
+    table [x={#2},y expr=\thisrow{#3}+\thisrow{#4}] {\datatable};
+
+  \addplot [name path=minuserror,draw=none,no markers,forget plot]
+    table [x={#2},y expr=\thisrow{#3}-\thisrow{#4}] {\datatable};
+
+  \addplot [forget plot,fill=#5,opacity=#6]
+    fill between[on layer={},of=pluserror and minuserror];
+
+  \addplot [#5,thick,no markers, line width = 1.5pt]
+    table [x={#2},y={#3}] {\datatable};
+}
+\begin{document}
+
+%\begin{tabular}{cc}
+%\input{yearly_dynamics} & \input{monthly_dynamics}
+%\end{tabular}
+
+\begin{tikzpicture}
+\node at (-6, 0.) {\input{yearly_dynamics}};
+\node at (7, 0) {\input{monthly_dynamics}};
+\node at (-11.7, 10.) {\huge \bf a};
+\node at (-11.7, 3.4) {\huge \bf b};
+\node at (-11.7, -3) {\huge \bf c};
+
+\node at (0.7, 10.) {\huge \bf d};
+\node at (0.7, 3.4) {\huge \bf e};
+\node at (0.7, -3) {\huge \bf f};
+\end{tikzpicture}
+
+\end{document}
