@@ -1,0 +1,30 @@
+\begin{tikzpicture}
+    \begin{axis}[thick,smooth,no markers, ymax = 1, ymin = 0, 
+      clip  = true,
+      scaled y ticks=false,
+      scaled x ticks=false,
+      enlarge y limits = false,
+      enlarge x limits = false,
+      ylabel style={align=center},
+      ylabel = Cross Mapping skills ($\rho$),
+      xlabel= Library size,
+      legend cell align={left},
+      legend style={at={(axis cs:10,.8)},anchor=south west, draw = none, font=\fontsize{10}{12}\selectfont}
+]
+	\addplot[line width = 2pt, red] table[x index = 0, y index = 1]  {../divergence_temperature.txt};
+	\addlegendentry{Structural stability $\leftarrow$ temperature};
+	\addplot[line width = 2pt, blue] table[x index = 0, y index = 4]  {../divergence_temperature.txt};
+	\addlegendentry{temperature $\leftarrow$ Structural stability};
+        \addplot+[name path=A,black] table[x index = 0, y index = 2]  {../divergence_temperature.txt};
+        \addplot+[name path=B,black] table[x index = 0, y index = 3]  {../divergence_temperature.txt};
+        \addplot+[name path=C,black] table[x index = 0, y index = 5]  {../divergence_temperature.txt};
+        \addplot+[name path=D,black] table[x index = 0, y index = 6]  {../divergence_temperature.txt};
+
+        \addplot[red!50, opacity = 0.5] fill between[of=A and B];
+        \addplot[blue!50, opacity = 0.5] fill between[of=C and D];
+    \end{axis}
+    \draw
+       (current axis.north west) 
+     ++ (2pt,20pt) 
+     node {\Large \bf a}; 
+\end{tikzpicture}
