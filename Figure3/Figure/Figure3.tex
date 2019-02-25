@@ -1,0 +1,22 @@
+\documentclass{standalone}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
+\usepackage{tikz, tikz-3dplot}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes}
+\usetikzlibrary{arrows,positioning}
+\usetikzlibrary{calc}
+\usepackage{graphicx}
+\usepgfplotslibrary{statistics}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\begin{document}
+\begin{tabular}{cc}
+\input{log_boxplot_distribution} & \input{log_summary_statistics}
+\end{tabular}
+\end{document}

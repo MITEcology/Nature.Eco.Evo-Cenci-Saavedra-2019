@@ -1,0 +1,32 @@
+\begin{tikzpicture}
+\begin{axis} [
+boxplot/draw direction=y,
+x axis line style={opacity=0},
+axis x line*=bottom,
+axis y line=left,
+xtick = {1,2, ..., 8},
+xticklabel style = {rotate = 70},
+x = 1.cm, 
+ymin = -5.5, ymax = 5,
+ylabel = \small  Log ratio of trajectories divergence \\ at minimum and maximum stability points,
+ylabel style = {align = center},
+xticklabels = {Model 1,Model 2,Model 3,Model 4,Model 5,Model 6,Model 7,Model 8},
+]
+
+    \addplot [blue, unbounded coords=jump, boxplot, thick] table[y index = 3] {lv.txt};
+    \addplot [blue, unbounded coords=jump, boxplot, thick] table[y index = 3] {fc.txt};
+    \addplot [blue, unbounded coords=jump, boxplot, thick] table[y index = 3] {cr.txt};
+    \addplot [blue, unbounded coords=jump, boxplot, thick] table[y index = 3] {ml.txt};
+    \addplot [blue, unbounded coords=jump, boxplot, thick] table[y index = 3] {hs.txt};
+    \addplot [blue, unbounded coords=jump, boxplot, thick] table[y index = 3] {k.txt};
+    \addplot [blue, unbounded coords=jump, boxplot, thick] table[y index = 3] {a.txt};
+    \addplot [blue, unbounded coords=jump, boxplot, thick] table[y index = 3] {d.txt};
+
+    \draw[dotted, thick] (axis cs:0,0) -- (9,0);
+\end{axis}
+ \draw
+     (current axis.north west)
+     ++ (-20pt,10pt)
+     node {\Large \bf a};
+\end{tikzpicture}
+

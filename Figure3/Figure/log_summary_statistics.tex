@@ -1,0 +1,37 @@
+\begin{tikzpicture}
+\begin{axis} [
+%title = {\bf \Large Effect of perturbations occurring at different times},
+title style={yshift=3ex,},
+boxplot/draw direction=y,
+x axis line style={opacity=0},
+axis x line*=bottom,
+axis y line=left,
+xtick = {1,2, ..., 8},
+xticklabel style = {rotate = 70},
+x = 1.cm, 
+%ytick = {-3,  ..., 3.},
+ymin = -2, ymax =2,
+%ylabel = \small  Ratio of divergence at minimum \\ and maximum stability points, %($\frac{d(x,\tilde{x})_{\text{max stability}}}{d(x,\tilde{x})_{\text{min stability}}}$), 
+%Ratio of effect of parameters perturbations,
+ylabel style = {align = center},
+xticklabels = {Model 1,Model 2,Model 3,Model 4,Model 5,Model 6,Model 7,Model 8},
+clip = false,
+%ymode = log
+]
+	
+    	\addplot[color = blue, only marks, mark = *, error bars/.cd,
+        	y dir=both,
+        	y explicit] table[x index = 0, y index = 1, y error index = 2] {median_plus_error.txt};
+    	\draw[dotted, thick] (axis cs:0.5,0) -- (8,0);
+	\node[rotate = -90, red] at (9, 0.3) {\small Bad};
+	\node[rotate = -90, blue] at (9, -0.3) {\small Good};
+	\draw[line width = 2.pt, ->, red] (8.5,.1) -- (8.5, .6);
+	\draw[line width = 2.pt, ->, blue] (8.5,-0.1) -- (8.5, -0.6);
+
+\end{axis}
+ \draw
+     (current axis.north west)
+     ++ (-20pt,10pt)
+     node {\Large \bf b};
+\end{tikzpicture}
+
